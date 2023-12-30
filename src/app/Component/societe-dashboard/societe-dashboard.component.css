@@ -1,0 +1,11 @@
+.pureBack{
+    background-color: #f8f9fa;
+}
+.simBack{
+    min-height: 100vh;
+    background-color: #ebebeb;
+}
+.body{
+    margin: 0;
+    padding: 0;
+}

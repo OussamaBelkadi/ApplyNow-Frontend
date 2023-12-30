@@ -1,0 +1,63 @@
+<div class="container-fluid ">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 pureBack " >
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 position-fixed">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <img class="mt-4" src="../assets/images/champions_trophy_logo-removebg-preview.png" alt="" srcset="" width="100px">
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        
+                    </li>
+                    <li>
+                        <a [routerLink]="['/dashboard/societe']"  href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-2 bi-speedometer2 text-center text-center"></i> <span class="text-center d-none d-sm-inline">Societe Dashboard</span> </a>
+                        
+                    </li>
+                    <li class="mt-5">
+                        <a  [routerLink]="['/dashboard/offer']"  href="#submenu2" class="nav-link px-0 align-middle">
+                          <!-- <fa-icon  class="fs-6 me-1"></fa-icon> -->
+                          <span class="ms-1 d-none d-sm-inline text-secondary">Offers</span></a>
+                    </li>
+                    <li class="my-3">
+                        <a routerLink="" href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                          <!-- <fa-icon  class="fs-6 me-1"></fa-icon> -->
+                          <span class="ms-1 d-none d-sm-inline text-secondary">Postules</span></a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                  
+                    <li>
+                        <a routerLink="register" class="nav-link px-0 align-middle">
+                          <!-- <fa-icon  class="fs-6 me-1"></fa-icon> -->
+                          <span class="ms-1 d-none d-sm-inline text-secondary">register</span> </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown m-0 p-0">
+                    
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col py-3 simBack">
+          
+          <router-outlet></router-outlet>
+        
+        </div>
+    </div>
+  </div>

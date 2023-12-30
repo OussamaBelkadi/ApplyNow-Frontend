@@ -1,0 +1,59 @@
+<div class="card mb-4">
+    <div class="card-body">
+        <!-- Grid row -->
+        <div class="row">
+            <!-- Grid column -->
+            <div class="col-md-12">
+                <div class="input-group md-form form-sm form-2 pl-0">
+                    <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="search an offer" aria-label="Search">
+                    <span class="input-group-addon waves-effect purple lighten-2 p-2"  id="basic-addon1" ><fa-icon [icon]="fsearch " class="ic"></fa-icon></span> 
+                </div>
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+        <!--Table-->
+        <table class="table table-striped">
+            <!--Table head-->
+            <thead>
+                <tr>
+                    <th class="text-center" >titre</th>
+                    <th class="text-center" >description</th>
+                    <th class="text-center" >profile</th>
+                    <th class="text-center" >status</th>
+                    <th class="text-center" >action</th>
+                    <th class="text-center" >details</th>
+
+                </tr>
+            </thead>
+            <!--Table head-->
+            <!--Table body-->
+            <tbody>
+                
+                <tr>
+
+                    <td class="text-center" >titre</td>
+                    <td class="text-center" >description</td>
+                    <td class="text-center" >profile</td>
+                    <td   class="text-center"   ><span class="badge1  rounded-3 ">Refuse</span></td>
+                    <td class="text-center" ><fa-icon [icon]="fdelete " class="ic me-2"></fa-icon><fa-icon [icon]="fedite " class="ic"></fa-icon></td>
+                    <td class="text-center" ><fa-icon [icon]="feye " class="ic"></fa-icon></td>
+                    
+                </tr>
+                <tr>
+
+                    <td class="text-center" >titre</td>
+                    <td class="text-center" >description</td>
+                    <td class="text-center" >profile</td>
+                    <td   class="text-center"   ><span class="badge info rounded-3">Accepter</span></td>
+                    <td class="text-center" ><fa-icon [icon]="fdelete " class="ic me-2"></fa-icon><fa-icon [icon]="fedite " class="ic"></fa-icon></td>
+                    <td class="text-center" ><fa-icon [icon]="feye " class="ic"></fa-icon></td>
+                    
+                </tr>
+                
+            </tbody>
+            <!--Table body-->
+        </table>
+        <!--Table-->
+    </div>
+</div>
