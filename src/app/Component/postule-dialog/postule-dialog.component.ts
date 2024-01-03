@@ -8,6 +8,7 @@ import { PostuleService } from 'src/app/Service/postule.service';
   templateUrl: './postule-dialog.component.html',
   styleUrls: ['./postule-dialog.component.css']
 })
+
 export class PostuleDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private fb :FormBuilder,private service: PostuleService){}

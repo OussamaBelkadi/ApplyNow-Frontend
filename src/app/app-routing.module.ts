@@ -7,11 +7,12 @@ import { SocieteDashboardComponent } from './Component/societe-dashboard/societe
 import { LoginComponent } from './Component/login/login.component';
 import { PostuleComponent } from './Component/postule/postule.component';
 import { AgentComponent } from './Component/agent/agent.component';
+import { OffreSocieteComponent } from './Component/offre-societe/offre-societe.component';
 
 const routes: Routes = [
   {path:"dashboard",component:SocieteDashboardComponent,children:[
     {path:"societe",component:SocieteComponent},
-    {path:"offer",component:OffreComponent}, 
+    {path:"offer",component:OffreSocieteComponent}, 
     {path:"postule/:offerid",component:PostuleComponent}
   ]},
   {path:"register",component:RegisterComponent},

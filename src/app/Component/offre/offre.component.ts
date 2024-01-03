@@ -65,11 +65,14 @@ export class OffreComponent implements OnInit {
     this.GetOffers();
 
     console.log("ggg");
+    
   }
 
   openPostule(id : number){
+
     console.log( "the id is " + id);
     this.dialog.openPostuleDialog(id);
+  
   }
 
 

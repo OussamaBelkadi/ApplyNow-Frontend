@@ -22,6 +22,7 @@ import { PostuleComponent } from './Component/postule/postule.component';
 import { CvDialogComponent } from './Component/cv-dialog/cv-dialog.component';
 import { SafeUrlPipe } from './Service/safe-url.pipe';
 import { PostuleDialogComponent } from './Component/postule-dialog/postule-dialog.component';
+import { OffreSocieteComponent } from './Component/offre-societe/offre-societe.component';
  
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PostuleDialogComponent } from './Component/postule-dialog/postule-dialo
     PostuleComponent,
     CvDialogComponent,
     SafeUrlPipe,
-    PostuleDialogComponent
+    PostuleDialogComponent,
+    OffreSocieteComponent
     
   ],
   imports: [

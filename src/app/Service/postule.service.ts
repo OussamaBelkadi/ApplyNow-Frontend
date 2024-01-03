@@ -14,7 +14,8 @@ export class PostuleService {
     return this.http.get(`${this.url}postule/${id}`);
   }
 
-  fetchCv(cvpath : any):Observable<any>{
+  fetchCv(cvpath : any):Observable<any> {
+
     console.log("the path " + cvpath);
     const correctPath = cvpath.replace(/\\/g, '/');
     console.log("the correct path " + correctPath);
@@ -22,10 +23,13 @@ export class PostuleService {
     .pipe(
       map(response => new Blob([response], { type: 'application/pdf' }))
     );
+
   }
 
   Postuler(data : any) :Observable<any>  {
-      return this.http.post(`${this.url}postule`,data);
+
+      return this.http.post(`${this.url}postule`,data,{responseType : 'text'});
+  
   }
 
 }
