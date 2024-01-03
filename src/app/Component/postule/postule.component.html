@@ -1,0 +1,62 @@
+<div class=" mb-4">
+    <div class="card-body">
+        
+        <div class="row">
+           
+            <div class="col-md-12">
+                
+                <div class="input-group md-form form-sm form-2 pl-0">
+                    <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="search an offer" aria-label="Search">
+                    <span class="input-group-addon waves-effect purple lighten-2 p-2"  id="basic-addon1" ><fa-icon [icon]="fsearch " class="ic"></fa-icon></span> 
+                </div>
+            </div>
+           
+        </div>
+        
+        
+        <table class="table table-striped">
+            
+            <thead>
+                <tr>
+                    <th class="text-center" >nom complet</th>
+                    <th class="text-center" >Tel</th>
+                    <th class="text-center" >CV</th>
+                    <th class="text-center" >Motivation</th>
+                    <th class="text-center" >action</th>
+                    <th class="text-center" >details</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                
+                <tr *ngFor="let ps of Postule" >
+
+                    <td class="text-center" >{{ps.nom_complet}}</td>
+                    <td class="text-center" >
+                        <fa-icon [icon]="fpdf" class="ic" (click)="OpenCv(ps.cv)"  ></fa-icon>
+                        <span>CV</span>
+                        <!-- {{ps.cv}} -->
+                    </td>
+                    <td class="text-center" >
+                        {{ps.tel}}
+                    </td>
+                    <td   class="text-center">
+                    <span class="  rounded-3 ">
+                        <!-- {{ps.motivation}} -->
+                        <!-- <fa-icon [icon]="ffile" class="ic"></fa-icon> -->
+                        <fa-icon [icon]="fpdf" class="ic" (click)="OpenCv(ps.motivation)"  ></fa-icon>
+
+                        <span>lettre</span>
+                    </span></td>
+                    <td class="text-center" ><fa-icon [icon]="fdelete " class="ic me-2"></fa-icon><fa-icon [icon]="fedite " class="ic"></fa-icon></td>
+                    <td class="text-center" ><fa-icon [icon]="feye " class="ic"></fa-icon></td>
+                    
+                </tr>
+                
+                
+            </tbody>
+            
+        </table>
+        
+    </div>
+</div>

@@ -1,1 +1,57 @@
-<p>agent works!</p>
+<div class="p-2 overflow-x-hidden">
+
+    <p> List Of Offers </p>
+    <div class=" mb-4">
+        <div class="card-body">
+            
+            <div class="row">
+            
+                <div class="col-md-12">
+                
+                    <div class="input-group md-form form-sm form-2 pl-0">
+                        <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="search an offer" aria-label="Search">
+                        <span class="input-group-addon waves-effect purple lighten-2 p-2"  id="basic-addon1" ><fa-icon [icon]="fsearch " class="ic"></fa-icon></span> 
+                    </div>
+                </div>
+            
+            </div>
+            
+            
+            <table class="table table-striped">
+                
+                <thead>
+                    <tr>
+                        <th class="text-center" >titre</th>
+                        <th class="text-center" >description</th>
+                        <th class="text-center" >profile</th>
+                        <th class="text-center" >status</th>
+                        <th class="text-center" >action</th>
+
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    
+                    <tr *ngFor="let ofr of offer" >
+
+                        <td class="text-center" >{{ofr.titre}}</td>
+                        <td class="text-center" >{{ofr.description}}</td>
+                        <td class="text-center" >{{ofr.profile}}</td>
+                        <td   class="text-center"   ><span class="badge1  rounded-3" [ngClass]="{'badge': ofr.status === 'ACCEPTED', 'badge1': ofr.status == 'REJECTED','badge11': ofr.status == 'WAITING'}">{{ofr.status}}</span></td>
+                        <td class="text-center"><fa-icon  [ngClass]="{'d-none':ofr.status !='WAITING'}"  [icon]="faccept " class="text-success me-2" (click)="valide(ofr.id,'ACCEPTED')" ></fa-icon><fa-icon  [ngClass]="{'d-none':ofr.status !='WAITING'}"  [icon]="frefuse" class="text-danger" (click)="valide(ofr.id,'REJECTED')"></fa-icon></td>
+                        
+                    </tr>
+                    
+                    
+                </tbody>
+                <!-- todo:to come here for a tiny change -->
+                <mat-paginator [length]="12" [pageSize]="10" [pageSizeOptions]="[3,6,10,15]" aria-label="Select page"
+                    (page)="onPageChange($event)" >
+                </mat-paginator>
+
+            </table>
+            
+        </div>
+    </div>
+
+</div>

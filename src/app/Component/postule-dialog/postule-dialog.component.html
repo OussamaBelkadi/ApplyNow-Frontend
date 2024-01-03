@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+    
+  
+    <label for="nomComplet">Nom Complet:</label>
+    <input type="text" id="nomComplet" formControlName="nomComplet" required>
+  
+    <label for="tel">Telephone:</label>
+    <input type="tel" id="tel" formControlName="tel" required>
+  
+    <label for="cv">CV:</label>
+    <input type="file" id="cv" (change)="onFileChange($event, 'cv')" required>
+  
+    <label for="motivation">Motivation:</label>
+    <input type="file" id="motivation" (change)="onFileChange($event, 'motivation')" required>
+  
+    <button type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+  

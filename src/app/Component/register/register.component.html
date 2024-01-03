@@ -7,16 +7,16 @@
               <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
   
-                  <p class="text-start h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Societe</p>
+                  <!-- <p class="text-start h5 fw-bold mb-1  mx-md-4 mt-4">Register Your Campany</p> -->
   
-                  <form class="mx-1 mx-md-6">
+                  <form class="mx-1 mx-md-6"  enctype="multipart/form-data" [formGroup]="CompanyForm" (submit)="Submit()"  >
                     <div class="d-flex">
 
                         <div class="d-flex flex-row align-items-center mb-1">
                           <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                          <div class="form-outline flex-fill mb-0">
+                          <div class=" form-outline flex-fill mb-0">
                               <label class="form-label" for="form3Example1c">titre</label>
-                            <input type="text" id="form3Example1c" class="form-control" />
+                            <input type="text" id="form3Example1c" class="form-control"   formControlName="titre"  />
                           </div>
                         </div>
       
@@ -24,20 +24,19 @@
                           <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                               <label class="form-label" for="form3Example3c">Adress</label>
-                            <input type="email" id="form3Example3c" class="form-control" />
+                            <input type="text" id="form3Example3c" class="form-control"  formControlName="adress"  />
                           </div>
                         </div>
                     </div>
 
-                    <div class="">
+                    <div class="uploadfile text-center ms-3 mx-md-6 mt-0 mb-2">
+                      <div class="form-outline flex-fill mb-0">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <label for="apply">
+                        <input type="file" name="" id="apply" accept="image/*,.pdf" formControlName="imageFile" >
+                        Upload Company Image</label>
 
-                        <div class="d-flex flex-row align-items-center mb-1">
-                          <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                          <div class="form-outline flex-fill mb-0">
-                              <label class="form-label" for="form3Example1c">description</label>
-                            <textarea type="text" id="form3Example1c" class="form-control" ></textarea>
-                          </div>
-                        </div>
+                      </div>
                         
                         
                     </div>
@@ -48,7 +47,7 @@
                           <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                               <label class="form-label" for="form3Example1c">phone</label>
-                            <input type="text" id="form3Example1c" class="form-control" />
+                            <input type="text" id="form3Example1c" class="form-control"  formControlName="phone" />
                           </div>
                         </div>
       
@@ -56,26 +55,20 @@
                           <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                               <label class="form-label" for="form3Example3c">Email</label>
-                            <input type="email" id="form3Example3c" class="form-control" />
+                            <input type="email" id="form3Example3c" class="form-control"  formControlName="email"  />
                           </div>
                         </div>
                     </div>
-                    <div class="d-flex">
+                    <div class="">
 
                         <div class="d-flex flex-row align-items-center mb-1">
                           <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                               <label class="form-label" for="form3Example1c">Password</label>
-                            <input type="password" id="form3Example1c" class="form-control" />
+                            <input type="password" id="form3Example1c" class="form-control"   formControlName="password" />
                           </div>
                         </div>
-                        <div class="d-flex flex-row align-items-center mb-1">
-                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                            <div class="form-outline flex-fill mb-0">
-                                
-                              <input type="file" id="form3Example1c" class="form-control" />
-                            </div>
-                          </div>
+                        
                         
                         
                         
@@ -86,7 +79,7 @@
                     
   
                     <div class="d-flex justify-content-start mx-3 mb-3 mb-lg-4 mt-2">
-                      <button type="button" class="btn  btn-lg icbg">Register</button>
+                      <button type="submit" class="btn  btn-lg icbg">Register</button>
                     </div>
   
                   </form>

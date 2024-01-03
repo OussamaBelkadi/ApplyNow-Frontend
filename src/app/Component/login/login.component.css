@@ -1,0 +1,53 @@
+
+.ic{
+    color: #504DC1;
+    margin-right: 5px;
+}
+.textcolor{
+    color:#2557a7;
+}
+.icbg{
+    background-color: #504DC1;
+    color: white;
+}
+
+.uploadfile label {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+	background-color: #504DC1;
+	border-radius: 2px;
+	font-size: 1em;
+	line-height: 2.5em;
+	text-align: center;
+}
+
+.uploadfile label:hover {
+	background-color: #726fc2;
+}
+
+.uploadfile label:active {
+	background-color: mediumaquamarine;
+}
+
+.uploadfile input {
+	border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px; 
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.uploadfile body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	background-color: black;
+}
