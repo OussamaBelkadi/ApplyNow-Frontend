@@ -1,21 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { faSearch,faEye,faPenToSquare,faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { Store, select } from '@ngrx/store';
 import { Offers } from 'src/app/Model/offers';
 import { AgentService } from 'src/app/Service/agent.service';
 import { DialogService } from 'src/app/Service/dialog.service';
 import { OfferService } from 'src/app/Service/offer.service';
-
+import * as OfferActions from '../../State/OfferState/Action/action';
+import {  IsLoadigSelector } from 'src/app/State/OfferState/Selector/selector';
+import { AppStateInterface } from 'src/app/State/OfferState/AppStateInterface';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-offre',
   templateUrl: './offre.component.html',
   styleUrls: ['./offre.component.css']
 })
 export class OffreComponent implements OnInit {
-  ngOnInit(): void {
-    this.GetOffers();
+
+  isLoading : Observable<boolean>;
+  
+  constructor(private service:OfferService ,private agentService : AgentService,private dialog : DialogService,private store : Store<AppStateInterface>) {
+    
+  this.isLoading = this.store.pipe(select(IsLoadigSelector));
+
+  
   }
-  constructor(private service:OfferService ,private agentService : AgentService,private dialog : DialogService) {}
+  ngOnInit(): void {
+
+    this.GetOffers();
+    this.store.dispatch(OfferActions.getOffers())
+
+  }
   fsearch = faSearch;
   feye = faEye;
   fedite = faPenToSquare;
@@ -59,6 +74,7 @@ export class OffreComponent implements OnInit {
   }
 
   onPageChange(event : PageEvent){
+
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
    
