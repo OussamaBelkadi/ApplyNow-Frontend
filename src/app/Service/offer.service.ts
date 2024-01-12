@@ -15,8 +15,8 @@ export class OfferService {
     return this.http.post(`${this.url}offre/create`, offer);
   }
 
-  fetchOffers(id:number) :Observable<any>{
-    return this.http.get(`${this.url}societes/offers/${id}`);
+  fetchOffers(id:number) : Observable<Offers[]> {
+    return this.http.get<Offers[]>(`${this.url}societes/offers/${id}`);
   }
 
 }
