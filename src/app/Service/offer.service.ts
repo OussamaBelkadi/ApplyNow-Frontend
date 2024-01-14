@@ -8,15 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class OfferService {
   
-  private url = "http://localhost:8000/";
+  private url = "http://localhost:8000";
+
   constructor(private http : HttpClient) { }
 
   insertOffer(offer : Offers) :Observable<any>{
-    return this.http.post(`${this.url}offre/create`, offer);
+    return this.http.post(`${this.url}/offre/create`, offer);
   }
 
   fetchOffers(id:number) : Observable<Offers[]> {
-    return this.http.get<Offers[]>(`${this.url}societes/offers/${id}`);
+    return this.http.get<Offers[]>(`${this.url}/societes/offers/1`);
+  }
+  getAllOffers(pagable:any): Observable<any> {
+    return this.http.get<any>(`${this.url}/offre/${pagable.page}/${pagable.size}`);
   }
 
 }
