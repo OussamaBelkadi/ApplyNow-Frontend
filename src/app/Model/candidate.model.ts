@@ -1,4 +1,5 @@
 export interface Candidate {
+     id: number;
      fullname: string;
      email: string;
      password: string;

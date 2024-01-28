@@ -33,15 +33,6 @@
                 
                 <tbody>
                     
-                    <!-- <tr *ngFor="let offer of offer" >
-
-                        <td class="text-center" >{{ofr.titre}}</td>
-                        <td class="text-center" >{{ofr.description}}</td>
-                        <td class="text-center" >{{ofr.profile}}</td>
-                        <td   class="text-center"   ><span class="badge1  rounded-3" [ngClass]="{'badge': ofr.status === 'ACCEPTED', 'badge1': ofr.status == 'REJECTED','badge11': ofr.status == 'WAITING'}">{{ofr.status}}</span></td>
-                        <td class="text-center "><button class="btn btn-primary" (click)="openPostule(ofr.id)" > Postuler </button></td>
-                        
-                    </tr> -->
                     <ng-container *ngIf="offerState$ | async as state" >
                         
                     <tr *ngFor="let offer of state.offer" >
@@ -50,7 +41,7 @@
                         <td class="text-center" >{{offer.description}}</td>
                         <td class="text-center" >{{offer.profile}}</td>
                         <td   class="text-center"   ><span class="badge1  rounded-3" [ngClass]="{'badge': offer.status === 'ACCEPTED', 'badge1': offer.status == 'REJECTED','badge11': offer.status == 'WAITING'}">{{offer.status}}</span></td>
-                        <td class="text-center "><button class="btn btn-primary" (click)="openPostule(offer.id)" > Postuler </button></td>
+                        <td class="text-center "><button class="btn btn-primary" (click)="openPostule(offer.id, offer.idSociete, candidateID)" > Postuler </button></td>
                         
                     </tr>
                         </ng-container>
@@ -65,5 +56,7 @@
         </div>
     </div>
 
-
+    <pre>{{ candidates$ | async | json }}</pre>
+    
 </div>
+

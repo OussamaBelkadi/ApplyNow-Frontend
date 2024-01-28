@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { GetCandidate } from 'src/app/State/CandidateState/actions/cadidate.action';
 
@@ -11,7 +12,7 @@ import { GetCandidate } from 'src/app/State/CandidateState/actions/cadidate.acti
 export class CandidateLoginComponent implements OnInit{
   CandidateForm!: FormGroup;
 
-  constructor(private store: Store, private Form: FormBuilder){}
+  constructor(private store: Store, private Form: FormBuilder, private route: Router){}
 
   ngOnInit(): void {
       this.connect();
@@ -31,6 +32,7 @@ export class CandidateLoginComponent implements OnInit{
       const candidate = this.CandidateForm.value;
       console.log(candidate);
       this.store.dispatch(new GetCandidate(candidate))
+      this.route.navigate(['/offer'])
     }
   }
 

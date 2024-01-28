@@ -13,8 +13,8 @@ export class CandidateService {
 
 
 // TODO: realized the completed url for request
-  registerCandidate(cadidate:Candidate):Observable<any>{
-    return this.http.post(`${this.url}api/v1/candidate/register`, cadidate);
+  registerCandidate(candidate:Candidate):Observable<any>{
+    return this.http.post(`${this.url}api/v1/candidate/register`, candidate);
   }
 
   getCandidate(candidate:Candidate):Observable<any>{

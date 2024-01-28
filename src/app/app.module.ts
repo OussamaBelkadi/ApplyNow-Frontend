@@ -32,6 +32,11 @@ import { CandidateRegisterComponent } from './Component/candidate-register/candi
 import { candidateReducer } from './State/CandidateState/reducers/candidate.reducer';
 import { CandidateEffect } from './State/CandidateState/effects/candidate.effect';
 import { CandidateLoginComponent } from './Component/candidate-login/candidate-login.component';
+import { CancelComponent } from './cancel/cancel.component';
+import { SucessComponent } from './sucess/sucess.component';
+import { MatButtonModule } from '@angular/material/button';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
  
 @NgModule({
   declarations: [
@@ -49,7 +54,11 @@ import { CandidateLoginComponent } from './Component/candidate-login/candidate-l
     PostuleDialogComponent,
     OffreSocieteComponent,
     CandidateRegisterComponent,
-    CandidateLoginComponent
+    CandidateLoginComponent,
+    CancelComponent,
+    SucessComponent,
+    CheckoutComponent,
+    SubscriptionComponent
 
   ],
   imports: [
@@ -61,7 +70,7 @@ import { CandidateLoginComponent } from './Component/candidate-login/candidate-l
     BrowserAnimationsModule,
     MatDialogModule,
     MatPaginatorModule,
-    StoreModule.forRoot({'OfferState': offerReducer, 'Candidate' : candidateReducer}),
+    StoreModule.forRoot({'OfferState': offerReducer, 'CandidateState' : candidateReducer}),
     EffectsModule.forRoot([OfferEffects, CandidateEffect]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
@@ -70,6 +79,8 @@ import { CandidateLoginComponent } from './Component/candidate-login/candidate-l
       trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
     }),
+    
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

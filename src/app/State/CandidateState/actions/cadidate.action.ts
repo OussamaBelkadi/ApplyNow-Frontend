@@ -7,7 +7,7 @@ export enum CandidateCreateActionsTypes{
     GET_CANDIDATE_CREATE_ERROR = "[Candidate] Get Candidate Error"
 }
 export enum CandidateActionsTypes{
-    GET_CANDIDATE = "[candidate] Get Candidate",
+    GET_CANDIDATE = "[ccandandidate] Get Candidate",
     GET_CANDIDATE_SUCCESS = "[Candidate] Get Candidate Success",
     GET_CANDIDATE_ERROR = "[Candidate] Get Candidate Error"
 }

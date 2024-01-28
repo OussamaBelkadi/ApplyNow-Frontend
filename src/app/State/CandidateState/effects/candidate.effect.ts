@@ -25,7 +25,7 @@ export class CandidateEffect{
             ofType<GetCandidate>(CandidateActionsTypes.GET_CANDIDATE),
             mergeMap((action)=>{
                 return this.candidateService.getCandidate(action.payload).pipe(
-                    map((cand)=> new GetCandidateSuccess(cand)),
+                    map((candidate)=> new GetCandidateSuccess(candidate)),
                     catchError((err)=>of(new GetCandidateError(err)))
                 )
             })

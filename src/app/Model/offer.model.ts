@@ -7,5 +7,7 @@ export interface Offer{
     id: number,
     niveau_etude: string,
     status: string,
+    idSociete: number,
     postule: []
+
 }

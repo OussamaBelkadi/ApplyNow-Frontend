@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { GetCandidate } from 'src/app/State/CandidateState/actions/cadidate.action';
+import { GetCandidate, GetCandidateCreate } from 'src/app/State/CandidateState/actions/cadidate.action';
 
 @Component({
   selector: 'app-candidate-register',
@@ -34,7 +34,7 @@ export class CandidateRegisterComponent implements OnInit{
     if(this.CandidateForm.valid){
       const candidate = this.CandidateForm.value;
       console.log(candidate);
-      this.store.dispatch(new GetCandidate(candidate))
+      this.store.dispatch(new GetCandidateCreate(candidate))
       this.route.navigate(["/candidate/login"])
     }
   }

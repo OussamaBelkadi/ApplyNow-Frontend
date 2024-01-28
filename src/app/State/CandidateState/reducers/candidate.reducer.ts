@@ -29,7 +29,7 @@ export function candidateReducer(state:CandidateState=initState, action:Action):
             return {...state, dataState:CandidateStateEnum.LOADED, candidate: (<CandidateActions>action).payload}
         case CandidateCreateActionsTypes.GET_CANDIDATE_CREATE_ERROR:
             return {...state, dataState:CandidateStateEnum.ERROR, candidate: (<CandidateActions>action).payload}
-            case CandidateActionsTypes.GET_CANDIDATE: 
+        case CandidateActionsTypes.GET_CANDIDATE: 
             return {...state, dataState:CandidateStateEnum.LOADING}
         case CandidateActionsTypes.GET_CANDIDATE_SUCCESS:
             return {...state, dataState:CandidateStateEnum.LOADED, candidate: (<CandidateActions>action).payload}
