@@ -7,9 +7,10 @@ import { AgentService } from 'src/app/Service/agent.service';
 import { DialogService } from 'src/app/Service/dialog.service';
 import { OfferService } from 'src/app/Service/offer.service';
 import * as OfferActions from '../../State/OfferState/Action/action';
-import {  IsLoadigSelector } from 'src/app/State/OfferState/Selector/selector';
+import {  IsLoadigSelector, OffersSelector, errorSelector } from 'src/app/State/OfferState/Selector/selector';
 import { AppStateInterface } from 'src/app/State/OfferState/AppStateInterface';
 import { Observable } from 'rxjs';
+import { OfferStateInterface } from 'src/app/State/OfferState/OfferState.interface';
 @Component({
   selector: 'app-offre',
   templateUrl: './offre.component.html',
@@ -18,17 +19,29 @@ import { Observable } from 'rxjs';
 export class OffreComponent implements OnInit {
 
   isLoading : Observable<boolean>;
+  error : Observable<String | null>;
+  ListOffers : Observable<Offers[]>;
   
   constructor(private service:OfferService ,private agentService : AgentService,private dialog : DialogService,private store : Store<AppStateInterface>) {
     
-  this.isLoading = this.store.pipe(select(IsLoadigSelector));
-
+    this.isLoading = this.store.pipe(select(IsLoadigSelector));
+    this.ListOffers = this.store.pipe(select(OffersSelector));
+    this.error = this.store.pipe(select(errorSelector));
   
   }
   ngOnInit(): void {
 
     this.GetOffers();
-    this.store.dispatch(OfferActions.getOffers())
+    const SID = localStorage.getItem("societeid");
+    if(SID !== null){
+      const SIDnumber = parseInt(SID);
+      this.store.dispatch(OfferActions.getOffers({societeid : SIDnumber}));
+    }
+    
+    this.ListOffers.subscribe(offers => {
+      console.log(offers); // Check if 'offers' is an array here
+      this.offer = offers;
+  });
 
   }
   fsearch = faSearch;
@@ -62,11 +75,11 @@ export class OffreComponent implements OnInit {
 
  
 
-  GetOffers(){
+  GetOffers() {
 
   this.agentService.GetOffers(this.pageIndex,this.pageSize).subscribe((data:any)=>{
     
-    console.log(data);
+    // console.log(data);
     this.offer = data;
 
   },(err)=>console.log(err))

@@ -5,6 +5,12 @@ import { OfferService } from 'src/app/Service/offer.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { PageEvent } from '@angular/material/paginator';
 import { DialogService } from 'src/app/Service/dialog.service';
+import * as OfferActions from '../../State/OfferState/Action/action';
+import { Store, select } from '@ngrx/store';
+import { Offers } from 'src/app/Model/offers';
+import { AppStateInterface } from 'src/app/State/OfferState/AppStateInterface';
+import { Observable, switchMap, take } from 'rxjs';
+import { OffersSelector, errorSelector } from 'src/app/State/OfferState/Selector/selector';
 
 @Component({
   selector: 'app-agent',
@@ -12,10 +18,25 @@ import { DialogService } from 'src/app/Service/dialog.service';
   styleUrls: ['./agent.component.css']
 })
 export class AgentComponent implements OnInit {
-  ngOnInit(): void {
-    this.GetOffers();
+
+  ListOffers : Observable<Offers[]>;
+  error : Observable<String | null> | undefined;
+
+
+  constructor(private store : Store<AppStateInterface>,private service:OfferService ,private agentService : AgentService,private dialog : DialogService) {
+    this.ListOffers = this.store.pipe(select(OffersSelector));
+
   }
-  constructor(private service:OfferService ,private agentService : AgentService,private dialog : DialogService) {}
+
+  ngOnInit(): void {
+
+    this.GetOffers();
+    this.store.dispatch(OfferActions.getAllOffersAdmin({page : this.pageIndex,size:this.pageSize}));
+    this.ListOffers.subscribe(offers => {
+      this.offer$ = offers;
+  });
+
+  }
   fsearch = faSearch;
   feye = faEye;
   fedite = faPenToSquare;
@@ -23,6 +44,7 @@ export class AgentComponent implements OnInit {
   faccept = faCircleCheck;
   frefuse = faCircleXmark;
   offer :any;
+  offer$ :any;
   pageSize = 10;
   pageIndex = 0;
 
@@ -33,17 +55,13 @@ export class AgentComponent implements OnInit {
   //   })
   // }
 
-  valide(id : number,status : String){
+  valide(id : number,status : String) {
 
-    console.log("id is " + id);
-    console.log("status is " + status);
-    this.agentService.valideOffer(id,status).subscribe((data : any)=> {
-      
-      console.log(data);
-
-    } ,(err : any)=>{
-      console.log(err);
-    })
+    this.store.dispatch(OfferActions.ValideOffre({idoffer:id,status:status}));
+    this.store.pipe(select(errorSelector),
+    switchMap(async () => this.store.dispatch(OfferActions.getAllOffersAdmin({ page: this.pageIndex, size: this.pageSize })))
+    ).subscribe();
+    
 
   }
 
@@ -52,7 +70,7 @@ export class AgentComponent implements OnInit {
   GetOffers(){
 
   this.agentService.GetOffers(this.pageIndex,this.pageSize).subscribe((data:any)=>{
-    
+  
     console.log(data);
     this.offer = data;
 
@@ -60,18 +78,23 @@ export class AgentComponent implements OnInit {
 
   }
 
-  onPageChange(event : PageEvent){
+  onPageChange(event : PageEvent) {
+
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
    
-    this.GetOffers();
-
+    // this.GetOffers();
+    this.store.dispatch(OfferActions.getAllOffersAdmin({page : this.pageIndex,size:this.pageSize}));
+    
     console.log("ggg");
+
   }
 
   openPostule(id : number){
+
     console.log( "the id is " + id);
     this.dialog.openPostuleDialog(id);
+
   }
 
 

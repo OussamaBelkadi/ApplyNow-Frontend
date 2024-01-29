@@ -5,9 +5,19 @@
            
             <div class="col-md-12">
                 
-                <div class="input-group md-form form-sm form-2 pl-0">
-                    <input class="form-control my-0 py-1 pl-3 purple-border" type="text" placeholder="search an offer" aria-label="Search">
-                    <span class="input-group-addon waves-effect purple lighten-2 p-2"  id="basic-addon1" ><fa-icon [icon]="fsearch " class="ic"></fa-icon></span> 
+                <div class="d-flex justify-content-between ">
+                    <div class="alert alert-light w-25 " role="alert">
+                        <span class="badge"> Accepted </span> <br>
+                        {{statistics.accepted}}
+                    </div>
+                    <div class="alert alert-light w-25 " role="alert">
+                        <span class="badge1"> Refused </span> <br>
+                        {{statistics.refused}}
+                    </div>
+                    <div class="alert alert-light w-25" role="alert">
+                        <span class="badge11"> Waiting </span> <br>
+                        {{statistics.pending}}
+                    </div>  
                 </div>
             </div>
            
@@ -19,11 +29,10 @@
             <thead>
                 <tr>
                     <th class="text-center" >nom complet</th>
-                    <th class="text-center" >Tel</th>
                     <th class="text-center" >CV</th>
                     <th class="text-center" >Motivation</th>
                     <th class="text-center" >action</th>
-                    <th class="text-center" >details</th>
+                    <th class="text-center" >Status</th>
                 </tr>
             </thead>
             
@@ -31,15 +40,13 @@
                 
                 <tr *ngFor="let ps of Postule" >
 
-                    <td class="text-center" >{{ps.nom_complet}}</td>
+                    <td class="text-center" >{{ps.candidateDTO.fullname}}</td>
                     <td class="text-center" >
                         <fa-icon [icon]="fpdf" class="ic" (click)="OpenCv(ps.cv)"  ></fa-icon>
                         <span>CV</span>
                         <!-- {{ps.cv}} -->
                     </td>
-                    <td class="text-center" >
-                        {{ps.tel}}
-                    </td>
+                   
                     <td   class="text-center">
                     <span class="  rounded-3 ">
                         <!-- {{ps.motivation}} -->
@@ -48,8 +55,19 @@
 
                         <span>lettre</span>
                     </span></td>
-                    <td class="text-center" ><fa-icon [icon]="fdelete " class="ic me-2"></fa-icon><fa-icon [icon]="fedite " class="ic"></fa-icon></td>
-                    <td class="text-center" ><fa-icon [icon]="feye " class="ic"></fa-icon></td>
+                    <td class="text-center" >
+                        <!-- accept -->
+                        <fa-icon [icon]="faccept " class="ic text-success me-2" (click)="accepterPostule(ps.id)"  ></fa-icon>
+                        <!-- accept -->
+                        <!-- refused -->
+                        <fa-icon [icon]="frefuse " class="ic me-2 text-danger"  (click)="refuserPostule(ps.id)"    ></fa-icon>
+                        <!-- refused -->
+                    </td>
+                    <td class="text-center"  >
+                       <span [ngClass]="{'badge': ps.postuleResponse === 'ACCEPTED', 'badge1': ps.postuleResponse == 'REJECTED','badge11': ps.postuleResponse == 'WAITING'}">
+                         {{ps.postuleResponse}} 
+                        </span>
+                    </td>
                     
                 </tr>
                 

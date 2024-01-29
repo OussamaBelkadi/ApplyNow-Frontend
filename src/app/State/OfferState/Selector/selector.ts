@@ -1,6 +1,7 @@
 import { createSelector } from "@ngrx/store";
 import { AppStateInterface } from "../AppStateInterface";
 import { state } from "@angular/animations";
+import { Offers } from "src/app/Model/offers";
 
 export const selectorFeature = (state : AppStateInterface)=>state.Offers;
 
@@ -11,7 +12,7 @@ export const IsLoadigSelector = createSelector(
 
 export const OffersSelector = createSelector(
     selectorFeature,
-    (state) => state.Offers
+    (state) => state.Offers as Offers[]
 ) 
 
 export const errorSelector = createSelector(

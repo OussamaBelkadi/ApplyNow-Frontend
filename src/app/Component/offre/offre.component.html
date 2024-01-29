@@ -2,6 +2,7 @@
 
     <p> List Of Offers </p>
     <p *ngIf="isLoading | async" > is Loading ...</p>
+    <p *ngIf="error | async" class="text-danger" > {{error | async}}</p>
     <div class=" mb-4">
         <div class="card-body">
             
@@ -27,17 +28,26 @@
                         <th class="text-center" >profile</th>
                         <th class="text-center" >status</th>
                         <th class="text-center" >action</th>
-
                     </tr>
                 </thead>
                 
                 <tbody>
                     
-                    <tr *ngFor="let ofr of offer" >
+                    <!-- <tr *ngFor="let ofr of offer" >
 
                         <td class="text-center" >{{ofr.titre}}</td>
                         <td class="text-center" >{{ofr.description}}</td>
                         <td class="text-center" >{{ofr.profile}}</td>
+                        <td   class="text-center"   ><span class="badge1  rounded-3" [ngClass]="{'badge': ofr.status === 'ACCEPTED', 'badge1': ofr.status == 'REJECTED','badge11': ofr.status == 'WAITING'}">{{ofr.status}}</span></td>
+                        <td class="text-center "><button class="btn btn-primary" (click)="openPostule(ofr.id)" > Postuler </button></td>
+                        
+                    </tr> -->
+
+                    <tr *ngFor="let ofr of offer " >
+                        
+                        <td class="text-center" > {{ofr.titre}}</td>
+                        <td class="text-center" >{{ofr.description}}</td>
+                        <td class="text-center" >{{ofr.profile}}</td> 
                         <td   class="text-center"   ><span class="badge1  rounded-3" [ngClass]="{'badge': ofr.status === 'ACCEPTED', 'badge1': ofr.status == 'REJECTED','badge11': ofr.status == 'WAITING'}">{{ofr.status}}</span></td>
                         <td class="text-center "><button class="btn btn-primary" (click)="openPostule(ofr.id)" > Postuler </button></td>
                         
