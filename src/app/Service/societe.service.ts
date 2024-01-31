@@ -11,6 +11,7 @@ export class SocieteService {
   constructor(private http:HttpClient) { }
   
   private url = "http://localhost:8000/";
+
   
   RegisterCompany(company : Societe):Observable<any>{
     const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');

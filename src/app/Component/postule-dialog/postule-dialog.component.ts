@@ -11,8 +11,12 @@ import { PostuleService } from 'src/app/Service/postule.service';
 
 export class PostuleDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private fb :FormBuilder,private service: PostuleService){}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb :FormBuilder, private service: PostuleService){}
   
+  offerId= this.data.offerId;
+  candidateId = this.data.candidateId;
+  societeId =this.data.societeId;
+
   form!:FormGroup;
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -24,20 +28,24 @@ export class PostuleDialogComponent implements OnInit {
   }
 
 
-  offerId= this.data;
+
   
   submitForm(){
-    console.log("postule submit ")
+    console.log(this.candidateId + ' ' + this.offerId);
+    
+  
     if (this.form.valid) {
     
     const { offreId, nomComplet, tel, cv, motivation } = this.form.value;
     const formData = new FormData();
     
     formData.append('offreId', this.offerId);
-    formData.append('nom_complet', nomComplet);
-    formData.append('tel', tel);
     formData.append('cv', cv);
     formData.append('motivation', motivation);
+    formData.append('id', this.societeId);
+    formData.append('candidateId', this.candidateId)
+    formData.append('balance', '1')
+
     
     console.log(formData);
     this.service.Postuler(formData).subscribe((data : any)=>{
