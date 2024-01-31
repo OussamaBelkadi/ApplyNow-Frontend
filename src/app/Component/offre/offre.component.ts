@@ -7,6 +7,7 @@ import { DialogService } from 'src/app/Service/dialog.service';
 import { OfferService } from 'src/app/Service/offer.service';
 import * as OfferActions from '../../State/OfferState/Action/action';
 
+
 import { Observable, map, pluck } from 'rxjs';
 import { Candidate } from 'src/app/Model/candidate.model';
 import { OfferState } from 'src/app/State/OfferState/Reducer/reducer';
@@ -17,6 +18,7 @@ import { CandidateState } from 'src/app/State/CandidateState/reducers/candidate.
   templateUrl: './offre.component.html',
   styleUrls: ['./offre.component.css']
 })
+
 
 export class OffreComponent implements OnInit {
   pagable!: {};
@@ -94,9 +96,10 @@ export class OffreComponent implements OnInit {
 
  
 
-  GetOffers(){
+  GetOffers() {
 
   this.agentService.GetOffers(this.pageIndex,this.pageSize).subscribe((data:any)=>{
+
         this.offer = data;
 
   },(err)=>console.log(err))

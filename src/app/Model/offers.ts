@@ -1,12 +1,14 @@
 export class Offers {
 
-    societeId : any =2;
+    societeId : any;
     offreDTO:{
+        id:any;
         titre: any
         description: any
         profile: any
         niveau_etude: any
         salaire: any
+        status:any
     } | undefined
 
 

@@ -18,5 +18,16 @@ export class SocieteService {
     return this.http.post(`${this.url}societes/register`,company,{headers})
   }
 
+  LoginCompany(email: String ,password:String):Observable<any>{
 
+    return this.http.post<any>(`${this.url}societes/login`,{email,password});
+
+  }
+
+  approuveCandidate(id : number,status : String){
+
+    return this.http.post(`${this.url}postule/valide/${id}/${status}`,{});
+
+  }
+  
 }

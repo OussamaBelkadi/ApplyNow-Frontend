@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { OfferDialogComponent } from '../Component/offer-dialog/offer-dialog.component';
 import { CvDialogComponent } from '../Component/cv-dialog/cv-dialog.component';
 import { PostuleDialogComponent } from '../Component/postule-dialog/postule-dialog.component';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService {
-
+  dialogRef : MatDialogRef<OfferDialogComponent> | undefined;
   constructor(private dialog:MatDialog) { }
   openDialog():void{
 
-    this.dialog.open(OfferDialogComponent, { 
+    this.dialogRef = this.dialog.open(OfferDialogComponent, { 
       width :'600px',
       maxHeight:'90vh',
       
@@ -39,7 +40,9 @@ export class DialogService {
     })
   }
 
-
+  closeDialog():void{
+    this.dialogRef?.close();
+  }
 
 
 }

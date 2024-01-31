@@ -33,4 +33,10 @@ export class PostuleService {
   
   }
 
+  PostuleStaistics(id : number){
+
+    return this.http.get(`${this.url}offre/statistics/${id}`);
+    
+  }
+
 }
