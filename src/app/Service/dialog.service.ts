@@ -30,9 +30,10 @@ export class DialogService {
     });
   }
 
-  openPostuleDialog(idOffer : number){
+  openPostuleDialog( offerId : number, societeId: number,  candidateId: number ){
     this.dialog.open(PostuleDialogComponent,{
-      data : idOffer,
+
+      data : { societeId, offerId , candidateId },
       width: '80%',
       height: '80vh',
 

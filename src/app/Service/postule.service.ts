@@ -8,6 +8,7 @@ import { Observable, map } from 'rxjs';
 export class PostuleService {
 
   private url = "http://localhost:8000/";
+
   constructor(private http : HttpClient) { }
 
   fetchPostules(id:any):Observable<any>{

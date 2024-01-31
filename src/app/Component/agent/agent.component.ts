@@ -93,7 +93,9 @@ export class AgentComponent implements OnInit {
   openPostule(id : number){
 
     console.log( "the id is " + id);
+
     this.dialog.openPostuleDialog(id);
+
 
   }
 

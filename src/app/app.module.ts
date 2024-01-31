@@ -25,13 +25,21 @@ import { PostuleDialogComponent } from './Component/postule-dialog/postule-dialo
 import { OffreSocieteComponent } from './Component/offre-societe/offre-societe.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers } from './State/OfferState/Reducer/reducer';
+import { offerReducer } from './State/OfferState/Reducer/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { OfferEffects } from './State/OfferState/effects/OfferEffects';
+import { CandidateRegisterComponent } from './Component/candidate-register/candidate-register.component';
+import { candidateReducer } from './State/CandidateState/reducers/candidate.reducer';
+import { CandidateEffect } from './State/CandidateState/effects/candidate.effect';
+import { CandidateLoginComponent } from './Component/candidate-login/candidate-login.component';
+import { CancelComponent } from './cancel/cancel.component';
+import { SucessComponent } from './sucess/sucess.component';
+import { MatButtonModule } from '@angular/material/button';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
  
 @NgModule({
   declarations: [
-    
     AppComponent,
     SocieteComponent,
     AgentComponent,
@@ -44,12 +52,16 @@ import { OfferEffects } from './State/OfferState/effects/OfferEffects';
     CvDialogComponent,
     SafeUrlPipe,
     PostuleDialogComponent,
-    OffreSocieteComponent
-    
+    OffreSocieteComponent,
+    CandidateRegisterComponent,
+    CandidateLoginComponent,
+    CancelComponent,
+    SucessComponent,
+    CheckoutComponent,
+    SubscriptionComponent
+
   ],
   imports: [
-    StoreModule.forFeature('Offers',reducers),
-    EffectsModule.forFeature([OfferEffects]),
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
@@ -58,8 +70,8 @@ import { OfferEffects } from './State/OfferState/effects/OfferEffects';
     BrowserAnimationsModule,
     MatDialogModule,
     MatPaginatorModule,
-    StoreModule.forRoot(),
-    EffectsModule.forRoot(),
+    StoreModule.forRoot({'OfferState': offerReducer, 'CandidateState' : candidateReducer}),
+    EffectsModule.forRoot([OfferEffects, CandidateEffect]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
@@ -67,6 +79,8 @@ import { OfferEffects } from './State/OfferState/effects/OfferEffects';
       trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
     }),
+    
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

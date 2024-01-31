@@ -1,0 +1,60 @@
+<section style="overflow-x: hidden;">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class=" text-black" >
+            <div class="">
+              <div class="row justify-content-center align-items-center">
+                <div class="col-md-10 col-lg-5 col-xl-5 order-2 order-lg-1">
+  
+                  <!-- <p class="text-start h5 fw-bold mb-1  mx-md-4 mt-4">Register Your Campany</p> -->
+  
+                  <form class="mx-1 mx-md-6"  enctype="multipart/form-data"  [formGroup]="CandidateForm" (submit)="Submit()">
+                    
+
+                    <div class="">
+
+                        
+      
+                        <div class="d-flex flex-row align-items-center mb-1">
+                          <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                          <div class="form-outline flex-fill mb-0">
+                              <label class="form-label" for="form3Example3c">Email</label>
+                            <input type="email" id="form3Example3c" class="form-control"  formControlName="email"  />
+                          </div>
+                        </div>
+                    </div>
+                    <div class="">
+
+                        <div class="d-flex flex-row align-items-center mb-1">
+                          <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                          <div class="form-outline flex-fill mb-0">
+                              <label class="form-label" for="form3Example1c">Password</label>
+                            <input type="password" id="form3Example1c" class="form-control"   formControlName="password" />
+                          </div>
+                        </div>
+                                
+                        
+                    </div>
+  
+  
+                    <div class="d-flex justify-content-start mx-3 mb-3 mb-lg-4 mt-2">
+                      <button type="submit" class="btn  btn-lg icbg">Login</button>
+                    </div>
+  
+                  </form>
+  
+                </div>
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+  
+                  <img src="../../../assets/images/MicrosoftTeams-image-138-1500x630.png"
+                    class="" alt="Sample image" width="500px" height="350px">
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

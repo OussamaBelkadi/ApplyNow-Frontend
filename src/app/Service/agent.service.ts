@@ -8,6 +8,7 @@ import { Offers } from '../Model/offers';
 })
 export class AgentService {
   private url = "http://localhost:8000/";
+  
   constructor(private http : HttpClient) { }
 
   valideOffer(id: number,status : String):Observable<any>{

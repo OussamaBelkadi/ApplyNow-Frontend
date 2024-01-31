@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class OfferService {
   
+
   private url = "http://localhost:8000/";
   constructor(private http : HttpClient)  { }
 
@@ -21,6 +22,11 @@ export class OfferService {
 
     return this.http.get<Offers[]>(`${this.url}societes/offers/${id}`);
    
+  }
+  
+  getAllOffers(pagable:any): Observable<any> {
+    return this.http.get<any>(`${this.url}/offre/${pagable.page}/${pagable.size}`);
+
   }
 
 }
