@@ -13,16 +13,19 @@ export class RegisterComponent implements OnInit{
 
   }
   CompanyForm !:FormGroup; 
+  SocieteForm : boolean = false;
+  CandidatForm : boolean = true;
   ngOnInit(): void {
 
       this.CompanyForm = this.fb.group({
 
-        titre: ['', Validators.required],
+        userName: ['', Validators.required],
         phone: ['', Validators.required],
-        imageFile: ['', Validators.required],
-        adress: ['', Validators.required],
+        imageFile: ['null'],
+        adresse: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]]
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        roles:['', Validators.required]
 
       })
 
@@ -33,24 +36,49 @@ export class RegisterComponent implements OnInit{
 
 
   Submit(){
+    if(this.CompanyForm.valid){
+      console.log(this.CompanyForm.value);
 
-  if(this.CompanyForm.valid){
+      const  {userName,phone,imageFile,adresse,email,password,roles} = this.CompanyForm.value;
+      const formData = new FormData();
+      formData.append("userName",userName);
+      formData.append("phone",phone);
+      formData.append("imageFile",imageFile);
+      formData.append("adresse",adresse);
+      formData.append("password",password);
+      formData.append("email",email);
+      formData.append("roles",roles);
+      console.log(formData);
 
-    const companydata = this.CompanyForm.value;
-    console.log(companydata);
-    this.service.RegisterCompany(companydata).subscribe((data : any)=>{
-      console.log(data);
-    },(err)=>{
-      console.log(err);
-    })
+      this.service.RegisterCompany(formData).subscribe((data : any)=>{
+
+        console.log(data);
+      },(err)=>{
+        console.log(err);
+      })
 
 
-  }else{
-    console.log("inputs arent valide");
+    }else{
+      console.log("inputs arent valide");
+    }
+
   }
 
+  showCompany(){
+    this.SocieteForm = false;
+  }
+  showSocieteForm(){
+    this.SocieteForm = false;
   }
 
+  onFileChange(ev : Event){
 
+    const target = ev.target as HTMLInputElement;
+    if(target && target.files && target.files.length > 0){
+      const file = target.files[0];
+      this.CompanyForm.get('imageFile')?.setValue(file);
+    }
+
+  }
 
 }

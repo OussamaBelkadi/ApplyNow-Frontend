@@ -33,17 +33,13 @@ export class OffreComponent implements OnInit {
   }
   ngOnInit(): void {
   
-    this.GetOffers();    
+    // this.GetOffers();    
     this.pagable = {'page': this.pageIndex, 'size': this.pageSize}
+    const Cid = localStorage.getItem("id");
+    if(Cid !== null){
+      this.candidateID = +Cid;
+    }
 
-    this.candidates$ = this.store.pipe(
-      select('CandidateState'),
-      map((candidateState: CandidateState) => candidateState.candidate),
-      pluck('id')
-    ); 
-    this.candidates$.subscribe(id => {
-      this.candidateID=id;
-    });
         
     this.store.dispatch(new OfferActions.GetAllOffersAction(this.pagable))  
     this.offerState$ = this.store.pipe(
@@ -120,8 +116,8 @@ export class OffreComponent implements OnInit {
   }
 
   openPostule(id : number, societeId: number, candidateId: number){
-
-    console.log( "the id is societe " + societeId);
+    console.log( "the id is societe " + candidateId);
+    
     this.dialog.openPostuleDialog(id, societeId, candidateId);
   
   }

@@ -1,5 +1,6 @@
 import { Action, createAction, props } from "@ngrx/store";
 import { Offer } from "src/app/Model/offer.model";
+import { Offers } from "src/app/Model/offers";
 
 export const getOffers = createAction('[Offers] Get Offers',props<{societeid : number}>())
 export const getOffersSuccess = createAction('[Offers] Get Offers success',props< {Offers : Offers[]} >())
@@ -7,7 +8,7 @@ export const getOffersFailure = createAction('[Offers] Get Offers Failure',props
 //agent
 export const getAllOffersAdmin = createAction('[Offers] Get All Offers',props<{page:number,size:number}>());
 export const getAllOffers = createAction('[Offers] Get All Offers Admin',props< {Offers : Offers[]} >());
-
+ 
 export const ValideOffre = createAction('[Offer] valide an Offer',props<{idoffer : number,status : String}>())
 export const ValideOffreSuccess = createAction('[Offer] valide an Offer Success',props<{response : String,idoffer:number}>());
 export const ValideOffreError = createAction('[Offer] valide an Offer Error',props<{error : String}>());
@@ -49,5 +50,7 @@ export class GetAllOffersError implements Action{
         
     }
 }
+
+
 
 export type OffersActions = GetAllOffersAction | GetAllOffersSuccess | GetAllOffersError;

@@ -12,7 +12,7 @@ export const IsLoadigSelector = createSelector(
 
 export const OffersSelector = createSelector(
     selectorFeature,
-    (state) => state.Offers as Offers[]
+    (state) => state.Offers 
 ) 
 
 export const errorSelector = createSelector(

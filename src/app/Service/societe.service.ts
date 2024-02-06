@@ -13,14 +13,16 @@ export class SocieteService {
   private url = "http://localhost:8000/";
 
   
-  RegisterCompany(company : Societe):Observable<any>{
-    const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
-    return this.http.post(`${this.url}societes/register`,company,{headers})
+  RegisterCompany(company : any):Observable<any>{
+
+    // const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
+    return this.http.post(`${this.url}auth/Signup`,company)
+
   }
 
   LoginCompany(email: String ,password:String):Observable<any>{
 
-    return this.http.post<any>(`${this.url}societes/login`,{email,password});
+    return this.http.post<any>(`${this.url}auth/login`,{email,password});
 
   }
 

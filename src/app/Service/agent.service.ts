@@ -17,11 +17,11 @@ export class AgentService {
   
   }
 
-  GetOffers(page : number,size:number):Observable<Offers[]>{
+  GetOffers(page : number,size:number):Observable<any>{
     if(size > 10){
         size  = 10;
     }
-    return this.http.get<Offers[]>(`${this.url}offre/${page}/${size}`)
+    return this.http.get<Offers[]>(`${this.url}offre/${page}/${size}`);
 
   }
 

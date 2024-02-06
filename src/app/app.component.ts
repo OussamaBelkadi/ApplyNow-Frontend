@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  constructor(private route : Router){}
   ngOnInit(): void {
     const societeid = localStorage.getItem("societeid");
     if(societeid === null){
@@ -19,8 +21,9 @@ export class AppComponent implements OnInit {
   
   isAuthenticated : boolean = false;
   logout(){
-
-    localStorage.removeItem("societeid");
-
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    this.route.navigate(['/login']);
+    
   }
 }

@@ -25,7 +25,7 @@ export class OfferService {
   }
   
   getAllOffers(pagable:any): Observable<any> {
-    return this.http.get<any>(`${this.url}/offre/${pagable.page}/${pagable.size}`);
+    return this.http.get<any>(`${this.url}offre/${pagable.page}/${pagable.size}`);
 
   }
 

@@ -15,21 +15,26 @@ import { CandidateLoginComponent } from './Component/candidate-login/candidate-l
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CancelComponent } from './cancel/cancel.component';
 import { SucessComponent } from './sucess/sucess.component';
+import { authCandidatGuard } from './Guards/auth-candidat.guard';
+import { authAgentGuard } from './Guards/auth-agent.guard';
+import { PaymentComponent } from './Component/payment/payment.component';
 
 
 const routes: Routes = [
-  {path:"dashboard",component:SocieteDashboardComponent,canActivate  : [authSocieteGuard],children:[
-    {path:"societe",component:SocieteComponent},
-    {path:"offer",component:OffreSocieteComponent}, 
-    {path:"postule/:offerid",component:PostuleComponent}
+  {path:"dashboard",component:SocieteDashboardComponent,canActivate  : [loginSocieteGuard],children:[
+    {path:"societe",component:SocieteComponent,canActivate  : [loginSocieteGuard]},
+    {path:"offer",component:OffreSocieteComponent,canActivate  : [loginSocieteGuard]}, 
+    {path:"postule/:offerid",component:PostuleComponent,canActivate  : [loginSocieteGuard]}
   ]},
   {path:"candidate/register",component:CandidateRegisterComponent},
   {path:"candidate/login", component:CandidateLoginComponent},
 
   {path:"register",component:RegisterComponent},
-  {path:"login",component:LoginComponent,canActivate : [loginSocieteGuard] },
-  {path:"agent",component:AgentComponent},
-  {path:"offer",component:OffreComponent}, 
+  {path:"login",component:LoginComponent,canActivate  : [] },
+    {path:"payment",component:PaymentComponent },
+
+  {path:"agent",component:AgentComponent,canActivate  : [authAgentGuard]},
+  {path:"offer",component:OffreComponent ,canActivate  : [authCandidatGuard]}, 
   {
     path: 'checkout',
     component: CheckoutComponent,

@@ -4,14 +4,11 @@ import { Injectable, inject } from '@angular/core';
 
 export const authSocieteGuard: CanActivateFn = (route, state) => {
  
-  const SID = localStorage.getItem("societeid");
+  const SID = localStorage.getItem("token");
   if(SID === null){
     const route = inject(Router);
     route.navigate(['/login']);
-    return false;
-  }else{
-
     return true;
   }
-  
+  return false;
 };

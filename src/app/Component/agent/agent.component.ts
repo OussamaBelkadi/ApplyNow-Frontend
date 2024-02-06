@@ -11,6 +11,7 @@ import { Offers } from 'src/app/Model/offers';
 import { AppStateInterface } from 'src/app/State/OfferState/AppStateInterface';
 import { Observable, switchMap, take } from 'rxjs';
 import { OffersSelector, errorSelector } from 'src/app/State/OfferState/Selector/selector';
+import { Offer } from 'src/app/Model/offer.model';
 
 @Component({
   selector: 'app-agent',
@@ -25,16 +26,20 @@ export class AgentComponent implements OnInit {
 
   constructor(private store : Store<AppStateInterface>,private service:OfferService ,private agentService : AgentService,private dialog : DialogService) {
     this.ListOffers = this.store.pipe(select(OffersSelector));
+    
 
   }
 
   ngOnInit(): void {
 
-    this.GetOffers();
+    // this.GetOffers();
     this.store.dispatch(OfferActions.getAllOffersAdmin({page : this.pageIndex,size:this.pageSize}));
-    this.ListOffers.subscribe(offers => {
-      this.offer$ = offers;
-  });
+      this.ListOffers.subscribe((data)=>{
+        this.offer$ = data;
+        console.log("data has come over here  " + data);
+      },(err)=>{
+        console.log("err why data doesnt come " + err);
+      });
 
   }
   fsearch = faSearch;
@@ -94,7 +99,7 @@ export class AgentComponent implements OnInit {
 
     console.log( "the id is " + id);
 
-    this.dialog.openPostuleDialog(id);
+    // this.dialog.openPostuleDialog(id);
 
 
   }

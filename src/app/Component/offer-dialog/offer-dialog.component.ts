@@ -34,9 +34,6 @@ export class OfferDialogComponent implements OnInit{
     });
 
 
-    
-
-
   }
 
   // Submit(){

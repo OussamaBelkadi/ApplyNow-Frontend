@@ -10,9 +10,12 @@ import { DialogService } from 'src/app/Service/dialog.service';
 })
 export class OffreSocieteComponent implements OnInit{
   ngOnInit(): void {
+
     console.log("hello");
     this.getOffers();
+  
   }
+
   constructor(private service:OfferService,private dialog : DialogService) { }
 
   fsearch = faSearch;
@@ -38,7 +41,9 @@ export class OffreSocieteComponent implements OnInit{
   }
 
   DialogAddOffer(){
+
     this.dialog.openDialog();
+  
   }
 
 

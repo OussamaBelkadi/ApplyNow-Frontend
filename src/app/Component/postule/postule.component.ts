@@ -27,6 +27,7 @@ export class PostuleComponent implements OnInit {
   Postule : any;
 
   ngOnInit(): void {
+    
     const offerid = this.route.snapshot.paramMap.get('offerid');
     this.route.params.subscribe(params => {
       const id = params['offerid'];

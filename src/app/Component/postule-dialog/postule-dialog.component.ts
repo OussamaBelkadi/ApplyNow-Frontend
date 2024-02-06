@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostuleService } from 'src/app/Service/postule.service';
+import { ToastrService } from 'ngx-toastr';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-postule-dialog',
@@ -11,7 +13,7 @@ import { PostuleService } from 'src/app/Service/postule.service';
 
 export class PostuleDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb :FormBuilder, private service: PostuleService){}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb :FormBuilder, private service: PostuleService, private toastr: ToastService){}
   
   offerId= this.data.offerId;
   candidateId = this.data.candidateId;
@@ -31,12 +33,16 @@ export class PostuleDialogComponent implements OnInit {
 
   
   submitForm(){
-    console.log(this.candidateId + ' ' + this.offerId);
     
-  
+    
     if (this.form.valid) {
+      const { cv, motivation } = this.form.value;
+      console.log(this.candidateId + 'candidat ID '  );
+      console.log(this.societeId + 'societe ID '  );
+      console.log(this.offerId + 'offreID '  );
+      console.log(cv);
+      console.log(motivation);
     
-    const { offreId, nomComplet, tel, cv, motivation } = this.form.value;
     const formData = new FormData();
     
     formData.append('offreId', this.offerId);
@@ -44,12 +50,13 @@ export class PostuleDialogComponent implements OnInit {
     formData.append('motivation', motivation);
     formData.append('id', this.societeId);
     formData.append('candidateId', this.candidateId)
-    formData.append('balance', '1')
-
+    formData.append('balance', '100');
     
     console.log(formData);
+
     this.service.Postuler(formData).subscribe((data : any)=>{
       console.log(data);
+      this.toastr.success('PAYMENT REALISED')
     },((err)=>{
       console.log(err);
     }))

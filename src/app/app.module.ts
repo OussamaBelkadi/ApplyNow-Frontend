@@ -11,7 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { OffreComponent } from './Component/offre/offre.component';
 import { LoginComponent } from './Component/login/login.component';
 import { RegisterComponent } from './Component/register/register.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatDialogModule} from '@angular/material/dialog';
 
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -25,7 +25,7 @@ import { PostuleDialogComponent } from './Component/postule-dialog/postule-dialo
 import { OffreSocieteComponent } from './Component/offre-societe/offre-societe.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { offerReducer } from './State/OfferState/Reducer/reducer';
+import { offerReducer, reducers } from './State/OfferState/Reducer/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { OfferEffects } from './State/OfferState/effects/OfferEffects';
 import { CandidateRegisterComponent } from './Component/candidate-register/candidate-register.component';
@@ -37,7 +37,11 @@ import { SucessComponent } from './sucess/sucess.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
- 
+import {AppStateInterface} from './State/OfferState/AppStateInterface'
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { PaymentComponent } from './Component/payment/payment.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AngularToastifyModule } from 'angular-toastify';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,19 +62,22 @@ import { SubscriptionComponent } from './subscription/subscription.component';
     CancelComponent,
     SucessComponent,
     CheckoutComponent,
-    SubscriptionComponent
+    SubscriptionComponent,
+    PaymentComponent
 
   ],
   imports: [
     BrowserModule,
+    ToastrModule.forRoot(),
     AppRoutingModule,
     FontAwesomeModule,
+    AngularToastifyModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,
     MatPaginatorModule,
-    StoreModule.forRoot({'OfferState': offerReducer, 'CandidateState' : candidateReducer}),
+    StoreModule.forRoot({'OfferState': offerReducer, 'CandidateState' : candidateReducer,'Offers':reducers}),
     EffectsModule.forRoot([OfferEffects, CandidateEffect]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
@@ -79,10 +86,11 @@ import { SubscriptionComponent } from './subscription/subscription.component';
       trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
     }),
-    
     MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
