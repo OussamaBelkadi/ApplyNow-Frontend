@@ -18,6 +18,7 @@ import { SucessComponent } from './sucess/sucess.component';
 import { authCandidatGuard } from './Guards/auth-candidat.guard';
 import { authAgentGuard } from './Guards/auth-agent.guard';
 import { PaymentComponent } from './Component/payment/payment.component';
+import { TestComponent } from './Component/test/test.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,8 @@ const routes: Routes = [
   },
   { path: 'cancel', component: CancelComponent },
   { path: 'success', component: SucessComponent },
+  { path: 'test', component: TestComponent },
+
 
 
 ];

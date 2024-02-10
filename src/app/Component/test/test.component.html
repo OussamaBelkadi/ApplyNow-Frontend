@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <div class="question-container" *ngFor="let question of questions">
+        <div class="alert alert-primary" role="alert">
+            <div class="d-flex gap-4">
+                <span><i class="fa-solid fa-circle-info icon-primary"></i></span>
+                <div class="d-flex flex-column gap-2">
+                    <h6 class="mb-0">Editing is restricted</h6>
+                    <p class="mb-0">{{ question.qst }}</p>
+                </div>
+            </div>
+        </div>
+        <form [formGroup]="questionForm" class="form-check mx-5">
+            <div *ngFor="let response of question.responseDtoList">
+                <input class="form-check-input" type="checkbox" [id]="response.id" [value]="response.id" [formControlName]="response.id" />
+                <label class="form-check-label" [for]="response.id">
+                    {{ response.resoponse }}
+                </label>
+            </div>
+        </form>
+    </div>
+    <button class="btn btn-primary mt-3" (click)="submitQuiz()">Submit Quiz</button>
+</div>

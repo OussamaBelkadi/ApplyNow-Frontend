@@ -42,6 +42,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { PaymentComponent } from './Component/payment/payment.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularToastifyModule } from 'angular-toastify';
+import { TestComponent } from './Component/test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { AngularToastifyModule } from 'angular-toastify';
     SucessComponent,
     CheckoutComponent,
     SubscriptionComponent,
-    PaymentComponent
+    PaymentComponent,
+    TestComponent
 
   ],
   imports: [
