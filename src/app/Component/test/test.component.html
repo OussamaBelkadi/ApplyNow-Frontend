@@ -11,12 +11,17 @@
         </div>
         <form [formGroup]="questionForm" class="form-check mx-5">
             <div *ngFor="let response of question.responseDtoList">
-                <input class="form-check-input" type="checkbox" [id]="response.id" [value]="response.id" [formControlName]="response.id" />
-                <label class="form-check-label" [for]="response.id">
-                    {{ response.resoponse }}
-                </label>
+              <input class="form-check-input" 
+                     type="radio" 
+                     [id]="response.id.toString()"
+                     [value]="response.id"
+                     [formControlName]="question.id.toString()" /> <!-- Convert question.id to string -->
+              <label class="form-check-label" [for]="response.id.toString()">
+                {{ response.resoponse }}
+              </label>
             </div>
-        </form>
+          </form>
+          
     </div>
     <button class="btn btn-primary mt-3" (click)="submitQuiz()">Submit Quiz</button>
 </div>
