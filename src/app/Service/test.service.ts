@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ValidateTest } from '../Model/Question';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,12 @@ export class TestService {
 
     // Sending data as JSON string
     return this.http.post(`${this.url}/api/register`, JSON.stringify({ email }), { headers });
+  }
+
+  ValidateTest(validate: ValidateTest){
+    const req = validate;    
+    console.log( req);
+    return this.http.post(`${this.url}/api/test`,validate,{responseType:"text"});
   }
 }
 

@@ -1,0 +1,5 @@
+node_modules
+!node_modules/jwt-decode
+npm-debug.log
+.git
+.gitignore

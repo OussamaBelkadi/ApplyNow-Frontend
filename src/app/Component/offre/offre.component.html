@@ -1,6 +1,21 @@
 <div class="p-2 overflow-x-hidden">
 
     <p> List Of Offers </p>
+    
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <div class="d-flex justify-content-between my-2">
+            <div>
+                <select formControlName="titre">
+                    <option value="Java" >Java</option>
+                    <option value="Php" >Php</option>
+                </select>
+               
+            </div>
+            
+            <button (click)="TakeTest()" class="btn btn-primary"> Take Test </button>
+        
+        </div>
+    </form>
  
     <!-- <p *ngIf="isLoading | async" > is Loading ...</p> -->
     <!-- <p *ngIf="error | async" class="text-danger" > {{error | async}}</p> -->

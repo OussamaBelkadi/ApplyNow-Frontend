@@ -7,3 +7,14 @@ export interface Question {
     responseDtoList: ResponseDto[];
   }
   
+  export interface RegisterTestDto{
+    questionList: Question[],
+    testId:number,
+    candidateId : number,
+  }
+
+  export interface ValidateTest{
+    testId: number,
+    candidateId: number,
+    score: number
+  }
