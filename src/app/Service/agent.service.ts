@@ -7,7 +7,7 @@ import { Offers } from '../Model/offers';
   providedIn: 'root'
 })
 export class AgentService {
-  private url = "http://localhost:8000/";
+  private url = "http://13.53.58.208:8000/";
   
   constructor(private http : HttpClient) { }
 

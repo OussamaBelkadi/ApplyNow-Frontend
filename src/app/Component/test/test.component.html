@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <div class="question-container" *ngFor="let question of questions">
+    <div class="question-container" *ngFor="let question of questions" [class.d-block]="ques" [class.d-none]="!ques">
         <div class="alert alert-primary" role="alert">
             <div class="d-flex gap-4">
                 <span><i class="fa-solid fa-circle-info icon-primary"></i></span>
@@ -11,12 +11,31 @@
         </div>
         <form [formGroup]="questionForm" class="form-check mx-5">
             <div *ngFor="let response of question.responseDtoList">
-                <input class="form-check-input" type="checkbox" [id]="response.id" [value]="response.id" [formControlName]="response.id" />
-                <label class="form-check-label" [for]="response.id">
-                    {{ response.resoponse }}
-                </label>
+              <input class="form-check-input" 
+                     type="radio" 
+                     [id]="response.id.toString()"
+                     [value]="response.id"
+                     [formControlName]="question.id.toString()" /> <!-- Convert question.id to string -->
+                     {{response.id}}
+              <label class="form-check-label" [for]="response.id.toString()">
+                {{ response.resoponse }}
+              </label>
             </div>
-        </form>
-    </div>
-    <button class="btn btn-primary mt-3" (click)="submitQuiz()">Submit Quiz</button>
+          </form>
+          
+        </div>
+        <button class="btn btn-primary mt-3" (click)="submitQuiz()"  [class.d-block]="ques" [class.d-none]="!ques">Submit Quiz</button>
+
+    <div class='container'>
+      
+      <div class="alert alert-success w-50 text-center mx-auto" [class.d-block]="pas" [class.d-none]="!pas" role="alert">
+        Congrutalation You Got The Badge
+      </div>
+      <div class="alert alert-danger w-50 text-center mx-auto" [class.d-block]="notpas" [class.d-none]="!notpas" role="alert">
+        Unfortunatly you didnt success
+      </div>
+
+  </div>
+    
+
 </div>
